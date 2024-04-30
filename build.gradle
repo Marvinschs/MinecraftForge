@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
         maven {
             name = "forge"
-            url = "http://files.minecraftforge.net/maven"
+            url = "https://files.minecraftforge.net/maven"
         }
         maven {
             name = "sonatype"
@@ -106,7 +106,7 @@ task crowdin(type: CrowdinDownload) {
 }
 
 def extraTxts = [
-    changelog, // yeah we can do thi, because gradle and groovy are awesome
+    changelog, // yeah we can do this, because gradle and groovy are awesome
     "LICENSE-fml.txt",
     "CREDITS-fml.txt",
     "MinecraftForge-Credits.txt",
@@ -161,7 +161,7 @@ installer.dependsOn signUniversal
 
 // MDK package
 
-import org.apache.tools.ant.filters.ReplaceTokens
+
 task makeMdk(type: Zip) {
     baseName = project.name
     classifier = "mdk"
@@ -178,10 +178,10 @@ task makeMdk(type: Zip) {
     }
     from changelog.output
     from ('mdk') {
-	    filter(ReplaceTokens, tokens: [
-		VERSION: project.version,
-		MAPPINGS: minecraft.mappings.replace('nodoc_', '')
-	    ])
+	    //filter(ReplaceTokens, tokens: [
+		//VERSION: project.version,
+		//MAPPINGS: minecraft.mappings.replace('nodoc_', '')
+	    //])
 	    exclude 'eclipse'
 	    rename 'gitignore\\.txt', '.gitignore'
 	    from 'MinecraftForge-Credits.txt'
